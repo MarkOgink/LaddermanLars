@@ -8,7 +8,7 @@ public class Player extends AnimatedSpriteObject{
 	private final LeathermanLars world;
 
 	public Player(LeathermanLars world) {
-		super(new Sprite("src/main/java/nl/han/ica/leathermanlars/media/sheriff_ned_featured.png"), 1);
+		super(new Sprite("src/main/java/nl/han/ica/leathermanlars/media/lars.png"), 1);
 		this.world = world;
 		setCurrentFrameIndex(0);
         setFriction(0.05f);
@@ -33,4 +33,26 @@ public class Player extends AnimatedSpriteObject{
             setY(world.getHeight() - size);
         }
 	}
+	
+	@Override
+    public void keyPressed(int keyCode, char key) {
+        final int speed = 5;
+        if (keyCode == world.LEFT) {
+            setDirectionSpeed(270, speed);
+//            setCurrentFrameIndex(0);
+        }
+        if (keyCode == world.UP) {
+            setDirectionSpeed(0, speed);
+        }
+        if (keyCode == world.RIGHT) {
+            setDirectionSpeed(90, speed);
+//            setCurrentFrameIndex(1);
+        }
+        if (keyCode == world.DOWN) {
+            setDirectionSpeed(180, speed);
+        }
+        if (key == ' ') {
+            System.out.println("Spatie!");
+        }
+    }
 }

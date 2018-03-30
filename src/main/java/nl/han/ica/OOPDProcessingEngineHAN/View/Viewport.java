@@ -36,7 +36,6 @@ public class Viewport {
      * @param zoomHeight The height in pixels which the viewPort will cut out of the world.
      */
     public Viewport(int x, int y, int zoomWidth, int zoomHeight) {
-    	
         this.x = x;
         this.y = y;
         this.zoomWidth = zoomWidth;

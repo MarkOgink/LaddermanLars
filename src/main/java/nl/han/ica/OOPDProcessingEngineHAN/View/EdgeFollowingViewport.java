@@ -20,7 +20,6 @@ public class EdgeFollowingViewport extends FollowingViewport {
      */
     public EdgeFollowingViewport(GameObject followedObject, int zoomWidth, int zoomHeight, double xOffset, double yOffset) {
         super(followedObject, zoomWidth, zoomHeight);
-
         x = (int)(followedObject.getCenterX() - ((zoomWidth / 2) + xOffset));
         y = (int)(followedObject.getCenterY() - ((zoomHeight / 2) + yOffset));
     }

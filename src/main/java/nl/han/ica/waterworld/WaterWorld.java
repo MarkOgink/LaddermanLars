@@ -51,8 +51,8 @@ public class WaterWorld extends GameEngine {
         createObjects();
         createBubbleSpawner();
 
-        createViewWithoutViewport(worldWidth, worldHeight);
-        //createViewWithViewport(worldWidth, worldHeight, 800, 800, 1.1f);
+//        createViewWithoutViewport(worldWidth, worldHeight);
+        createViewWithViewport(worldWidth, worldHeight, 800, 800, 1f);
 
     }
 

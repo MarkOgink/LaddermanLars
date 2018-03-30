@@ -1,5 +1,6 @@
 package nl.han.ica.leathermanlars;
 
+//import com.sun.prism.image.ViewPort;
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
 import nl.han.ica.OOPDProcessingEngineHAN.View.EdgeFollowingViewport;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
@@ -19,11 +20,12 @@ public class LeathermanLars extends GameEngine{
 		int worldWidth=1024;
         int worldHeight=683;
         createObjects();
-		createViewWithViewport(worldWidth, worldHeight, 800, 800, 1.1f);
+		createViewWithViewport(worldWidth, worldHeight, 950, 600, 1f);
 	}
 	
 	private void createViewWithViewport(int worldWidth,int worldHeight,int screenWidth,int screenHeight,float zoomFactor) {
-        EdgeFollowingViewport viewPort = new EdgeFollowingViewport(player, (int)Math.ceil(screenWidth/zoomFactor),(int)Math.ceil(screenHeight/zoomFactor),0,0);
+        EdgeFollowingViewport viewPort = new EdgeFollowingViewport(player, (int)Math.ceil(screenWidth/zoomFactor),(int)Math.ceil(screenHeight/zoomFactor), -415,-250);
+        System.out.println(viewPort.getX());
         viewPort.setTolerance(50, 50, 50, 50);
         View view = new View(viewPort, worldWidth,worldHeight);
         setView(view);
@@ -33,13 +35,12 @@ public class LeathermanLars extends GameEngine{
 	
 	private void createObjects() {
         player = new Player(this);
-        addGameObject(player, 100, 100);
+        addGameObject(player, 0, 0);
     }
 	
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
 	}
 
 }
