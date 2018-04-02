@@ -47,7 +47,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             setCurrentFrameIndex(1);
         }
         if (keyCode == world.UP) {
-            setDirectionSpeed(0, speed*4);
+            setDirectionSpeed(0, speed*2);
         }
         if (keyCode == world.RIGHT) {
             setDirectionSpeed(90, speed);
