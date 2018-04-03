@@ -40,11 +40,8 @@ public class LeathermanLars extends GameEngine{
         player = new Player(this);
         Snake snake = new Snake(this);
         player.setGravity(0.5f);
-        
-        addGameObject(player, 300, 550);
-        addGameObject(snake, 300, 500);
-        
-        
+        addGameObject(player, 300, 675-player.getHeight());
+        addGameObject(snake, 300, 550-snake.getHeight());
     }
 	
 	private void initializeTileMap() {
@@ -99,9 +96,10 @@ public class LeathermanLars extends GameEngine{
 		TileType [] tileTypes = {leftGroundTileType, middleGroundTileType, rightGroundTileType, leftPlatformTileType, middlePlatformTileType, rightPlatformTileType};
 		return tileTypes;
 	}
+	
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -11,13 +11,14 @@ public class Snake extends AnimatedSpriteObject implements ICollidableWithGameOb
 	private LeathermanLars world;
 	
 	public Snake(LeathermanLars world) {
-		super(new Sprite("src/main/java/nl/han/ica/leathermanlars/media/snake.png"), 2);
-		this.world = world;
+		this(world, new Sprite("src/main/java/nl/han/ica/leathermanlars/media/snake.png"), 2);
+		
 		
 	}
 	
-	private Snake(Sprite sprite, int totalFrames) {
+	private Snake(LeathermanLars world, Sprite sprite, int totalFrames) {
 		super(sprite, totalFrames);
+		this.world = world;
 		setxSpeed(-1);
 	}
 
@@ -29,7 +30,9 @@ public class Snake extends AnimatedSpriteObject implements ICollidableWithGameOb
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		if (getX()+getWidth()<=0) {
+            setX(world.getWidth());
+        }
 		
 	}
 
