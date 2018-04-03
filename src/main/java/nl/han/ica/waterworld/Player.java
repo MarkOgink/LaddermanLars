@@ -2,23 +2,26 @@ package nl.han.ica.waterworld;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.CollidedTile;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithTiles;
+import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Exceptions.TileNotFoundException;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.AnimatedSpriteObject;
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.waterworld.tiles.BoardsTile;
+import nl.han.ica.waterworld.tiles.solidTile;
 import processing.core.PVector;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * @author Ralph Niels
  * De spelerklasse (het paarse visje)
  */
-public class Player extends AnimatedSpriteObject implements ICollidableWithTiles {
+public class Player extends AnimatedSpriteObject implements ICollidableWithTiles, ICollidableWithGameObjects {
 
     final int size=25;
     private final WaterWorld world;
-
     /**
      * Constructor
      * @param world Referentie naar de wereld
@@ -95,6 +98,20 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                         e.printStackTrace();
                     }
                 }
+            }
+            	
+        }
+    }
+    
+    @Override
+    public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
+        for (GameObject g:collidedGameObjects) {
+            if (g instanceof Swordfish) {
+            	world.decreasePoints();
+            }
+            if (g instanceof Bubble) {
+            	world.increasePoints();
+                world.deleteGameObject(g);
             }
         }
     }

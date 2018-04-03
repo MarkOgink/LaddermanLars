@@ -11,6 +11,7 @@ import processing.core.PVector;
 public class Player extends AnimatedSpriteObject implements ICollidableWithTiles {
 	final int size=25;
 	private final LeathermanLars world;
+	private int lifePoints = 3;
 
 	public Player(LeathermanLars world) {
 		super(new Sprite("src/main/java/nl/han/ica/leathermanlars/media/lars.png"), 2);

@@ -12,6 +12,7 @@ import nl.han.ica.OOPDProcessingEngineHAN.Tile.TileType;
 import nl.han.ica.OOPDProcessingEngineHAN.View.EdgeFollowingViewport;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import nl.han.ica.waterworld.tiles.BoardsTile;
+import nl.han.ica.waterworld.tiles.solidTile;
 import processing.core.PApplet;
 
 /**
@@ -24,7 +25,7 @@ public class WaterWorld extends GameEngine {
     private Sound bubblePopSound;
     private TextObject dashboardText;
     private BubbleSpawner bubbleSpawner;
-    private int bubblesPopped;
+    private int aantalPunten;
     private IPersistence persistence;
     private Player player;
 
@@ -51,7 +52,7 @@ public class WaterWorld extends GameEngine {
         createObjects();
         createBubbleSpawner();
 
-//        createViewWithoutViewport(worldWidth, worldHeight);
+        createViewWithoutViewport(worldWidth, worldHeight);
         createViewWithViewport(worldWidth, worldHeight, 800, 800, 1f);
 
     }
@@ -103,7 +104,10 @@ public class WaterWorld extends GameEngine {
         player = new Player(this);
         addGameObject(player, 100, 100);
         Swordfish sf=new Swordfish(this);
+        Swordfish sf2 = new Swordfish(this);
+        sf2.setSpeed(10);
         addGameObject(sf,200,200);
+        addGameObject(sf2, 200, 200);
     }
 
     /**
@@ -133,7 +137,7 @@ public class WaterWorld extends GameEngine {
     private void initializePersistence() {
         persistence = new FilePersistence("main/java/nl/han/ica/waterworld/media/bubblesPopped.txt");
         if (persistence.fileExists()) {
-            bubblesPopped = Integer.parseInt(persistence.loadDataString());
+            aantalPunten = Integer.parseInt(persistence.loadDataString());
             refreshDasboardText();
         }
     }
@@ -145,8 +149,9 @@ public class WaterWorld extends GameEngine {
         /* TILES */
         Sprite boardsSprite = new Sprite("src/main/java/nl/han/ica/waterworld/media/boards.jpg");
         TileType<BoardsTile> boardTileType = new TileType<>(BoardsTile.class, boardsSprite);
+        TileType<solidTile> solidTileType = new TileType<>(solidTile.class, boardsSprite);
 
-        TileType[] tileTypes = { boardTileType };
+        TileType[] tileTypes = { boardTileType, solidTileType };
         int tileSize=50;
         int tilesMap[][]={
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
@@ -155,8 +160,8 @@ public class WaterWorld extends GameEngine {
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,0,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,1,1,1,-1,-1},
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
                 {-1,-1,-1, 0, 0, 0, 0,-1,0 , 0},
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
@@ -175,16 +180,23 @@ public class WaterWorld extends GameEngine {
      * Vernieuwt het dashboard
      */
     private void refreshDasboardText() {
-        dashboardText.setText("Bubbles popped: "+bubblesPopped);
+        dashboardText.setText("Aantal punten: "+aantalPunten);
     }
 
     /**
      * Verhoogt de teller voor het aantal
      * geknapte bellen met 1
      */
-    public void increaseBubblesPopped() {
-        bubblesPopped++;
-        persistence.saveData(Integer.toString(bubblesPopped));
+    public void increasePoints() {
+        aantalPunten++;
+        persistence.saveData(Integer.toString(aantalPunten));
         refreshDasboardText();
     }
+    
+    public void decreasePoints() {
+    	aantalPunten--;
+    	persistence.saveData(Integer.toString(aantalPunten));
+    	refreshDasboardText();
+    }
+    
 }

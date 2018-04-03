@@ -1,5 +1,7 @@
 package nl.han.ica.leathermanlars;
 
+import nl.han.ica.waterworld.*;
+import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
 //import com.sun.prism.image.ViewPort;
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
@@ -8,11 +10,13 @@ import nl.han.ica.OOPDProcessingEngineHAN.Tile.TileType;
 import nl.han.ica.OOPDProcessingEngineHAN.View.EdgeFollowingViewport;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import nl.han.ica.leathermanlars.Player;
+import nl.han.ica.waterworld.TextObject;
 import processing.core.PApplet;
 
 @SuppressWarnings("serial")
 public class LeathermanLars extends GameEngine{
 	private Player player;
+	private TextObject dashboardText;
 
 	public static void main(String[] args) {
 		PApplet.main(new String[]{"nl.han.ica.leathermanlars.LeathermanLars"});
@@ -43,6 +47,10 @@ public class LeathermanLars extends GameEngine{
         addGameObject(player, 300, 675-player.getHeight());
         addGameObject(snake, 300, 550-snake.getHeight());
     }
+	
+	private void createDashBoard(int dashboardWidth, int dashboardHeight) {
+		Dashboard dashboard = new Dashboard(0,0, dashboardWidth, dashboardHeight);
+	}
 	
 	private void initializeTileMap() {
 		TileType [] tileTypes = initializeTileTypes();

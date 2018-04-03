@@ -1,8 +1,14 @@
 package nl.han.ica.waterworld;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
+import nl.han.ica.OOPDProcessingEngineHAN.Collision.CollidedTile;
+import nl.han.ica.OOPDProcessingEngineHAN.Exceptions.TileNotFoundException;
+import processing.core.PVector;
+import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithTiles;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
+import nl.han.ica.waterworld.tiles.BoardsTile;
+import nl.han.ica.waterworld.tiles.solidTile;
 import processing.core.PGraphics;
 
 import java.util.List;
@@ -11,11 +17,12 @@ import java.util.List;
  * @author Ralph Niels
  * Bel-klasse
  */
-public class Bubble extends GameObject implements ICollidableWithGameObjects{
+public class Bubble extends GameObject implements ICollidableWithGameObjects, ICollidableWithTiles {
 
     private final Sound popSound;
     private WaterWorld world;
     private int bubbleSize;
+   
 
     /**
      * Constructor
@@ -46,7 +53,8 @@ public class Bubble extends GameObject implements ICollidableWithGameObjects{
     public void draw(PGraphics g) {
         g.ellipseMode(g.CORNER); // Omdat cirkel anders vanuit midden wordt getekend en dat problemen geeft bij collisiondetectie
         g.stroke(0, 50, 200, 100);
-        g.fill(0, 50, 200, 50);
+        //0, 50, 200, 50
+        g.fill(351, 29, 100, 50);
         g.ellipse(getX(), getY(), bubbleSize, bubbleSize);
     }
 
@@ -57,8 +65,27 @@ public class Bubble extends GameObject implements ICollidableWithGameObjects{
                 popSound.rewind();
                 popSound.play();
                 world.deleteGameObject(this);
-                world.increaseBubblesPopped();
+            }
+            if (g instanceof Player) {
+            	
             }
         }
+    }
+    
+    @Override
+    public void tileCollisionOccurred(List<CollidedTile> collidedTiles) {
+    	PVector vector;
+    	 for (CollidedTile ct : collidedTiles) {
+             if (ct.theTile instanceof solidTile) {
+                 if (ct.collisionSide == ct.BOTTOM) {
+                     try {
+                         vector = world.getTileMap().getTilePixelLocation(ct.theTile);
+                         setY(vector.y + 50);
+                     } catch (TileNotFoundException e) {
+                         e.printStackTrace();
+                     }
+                 }
+             }
+    	 }
     }
 }
