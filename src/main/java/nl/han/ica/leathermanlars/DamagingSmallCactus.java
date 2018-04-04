@@ -1,16 +1,17 @@
 package nl.han.ica.leathermanlars;
 
 public class DamagingSmallCactus extends SmallCactus {
-
+	private Player player;
 	private LeathermanLars world;
 	
-	public DamagingSmallCactus(LeathermanLars world) {
+	public DamagingSmallCactus(LeathermanLars world, Player player) {
 		this.world = world;
+		this.player = player;
 	}
 
 	@Override
 	public void doCactusAction() {
-		world.decreaseLifePoints(1);
+		player.decreaseLifePoints(1);
 		world.deleteGameObject(this);
 		
 	}

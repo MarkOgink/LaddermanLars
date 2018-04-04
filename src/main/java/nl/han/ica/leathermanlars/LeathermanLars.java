@@ -3,8 +3,6 @@ package nl.han.ica.leathermanlars;
 //import com.sun.prism.image.ViewPort;
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
-import nl.han.ica.OOPDProcessingEngineHAN.Persistence.FilePersistence;
-import nl.han.ica.OOPDProcessingEngineHAN.Persistence.IPersistence;
 import nl.han.ica.OOPDProcessingEngineHAN.Tile.TileMap;
 import nl.han.ica.OOPDProcessingEngineHAN.Tile.TileType;
 import nl.han.ica.OOPDProcessingEngineHAN.View.EdgeFollowingViewport;
@@ -17,10 +15,8 @@ import processing.core.PApplet;
 @SuppressWarnings("serial")
 public class LeathermanLars extends GameEngine{
 	private Sound backgroundSound;
-	private Player player;
-	private int lifePoints;
+	public Player player;
 	private TextObject dashboardText;
-	private IPersistence persistence;
 
 	public static void main(String[] args) {
 		PApplet.main(new String[]{"nl.han.ica.leathermanlars.LeathermanLars"});
@@ -34,7 +30,6 @@ public class LeathermanLars extends GameEngine{
         initializeSound();
         createDashBoard(worldWidth, 100);
         initializeTileMap();
-        initializePersistence();
         createObjects();
 		createViewWithViewport(worldWidth, worldHeight, 975, 700, 1.75f);
 	}
@@ -58,10 +53,10 @@ public class LeathermanLars extends GameEngine{
         Snake snake = new Snake(this);
         ExplodingBigCactus ebc = new ExplodingBigCactus(this);
         ExplodingSmallCactus esc = new ExplodingSmallCactus(this);
-        DamagingBigCactus dbc = new DamagingBigCactus(this);
-        DamagingSmallCactus dsc = new DamagingSmallCactus(this);
-        HealingBigCactus hbc = new HealingBigCactus(this);
-        HealingSmallCactus hsc = new HealingSmallCactus(this);
+        DamagingBigCactus dbc = new DamagingBigCactus(this, player);
+        DamagingSmallCactus dsc = new DamagingSmallCactus(this, player);
+        HealingBigCactus hbc = new HealingBigCactus(this, player);
+        HealingSmallCactus hsc = new HealingSmallCactus(this, player);
         player.setGravity(0.5f);
         addGameObject(player, 300, 675-player.getHeight());
         addGameObject(snake, 300, 550-snake.getHeight());
@@ -75,7 +70,7 @@ public class LeathermanLars extends GameEngine{
 	
 	private void createDashBoard(int dashboardWidth, int dashboardHeight) {
 		Dashboard dashboard = new Dashboard(0,0, dashboardWidth, dashboardHeight);
-		dashboardText=new TextObject("Lifes: ");
+		dashboardText=new TextObject("Lifepoints: 3");
         dashboard.addGameObject(dashboardText);
         addDashboard(dashboard);
 	}
@@ -138,36 +133,7 @@ public class LeathermanLars extends GameEngine{
 		
 	}
 	
-	private void initializePersistence() {
-		persistence = new FilePersistence("main/java/nl/han/ica/leathermanlars/media/lifepoints.txt");
-		if (persistence.fileExists()) {
-			lifePoints = Integer.parseInt(persistence.loadDataString());
-			refreshDashboardText();
-		}
-	}
-	
 	public void refreshDashboardText() {
-		dashboardText.setText("Lifepoints: "+lifePoints);
+		dashboardText.setText("Lifepoints: "+player.getLifePoints());
 	}
-	
-	public void increaseLifePoints(int number) {
-		lifePoints = lifePoints + number;
-		persistence.saveData(Integer.toString(lifePoints));
-		refreshDashboardText();
-	}
-	
-	public void decreaseLifePoints(int number) {
-		if(lifePoints>0 && number == 1) {
-			lifePoints = lifePoints - number;
-			persistence.saveData(Integer.toString(lifePoints));
-			refreshDashboardText();
-			
-		}
-		else if(lifePoints > 1 && number == 2) {
-			lifePoints = lifePoints - number;
-			persistence.saveData(Integer.toString(lifePoints));
-			refreshDashboardText();
-		}
-	}
-	
 }

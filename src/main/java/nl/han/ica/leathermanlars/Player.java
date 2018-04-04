@@ -13,6 +13,7 @@ import processing.core.PVector;
 public class Player extends AnimatedSpriteObject implements ICollidableWithTiles, ICollidableWithGameObjects {
 	final int size=25;
 	private final LeathermanLars world;
+	private int lifePoints = 3;
 
 	public Player(LeathermanLars world) {
 		super(new Sprite("src/main/java/nl/han/ica/leathermanlars/media/lars.png"), 2);
@@ -94,4 +95,27 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 		
 	}
 	
+	public int getLifePoints() {
+		return lifePoints;
+	}
+	public void setLifePoints(int number) {
+		lifePoints = number;
+	}
+	
+	public void increaseLifePoints(int number) {
+		lifePoints = lifePoints + number;
+		world.refreshDashboardText();
+	}
+	
+	public void decreaseLifePoints(int number) {
+		if(lifePoints>0 && number == 1) {
+			lifePoints = lifePoints - number;
+			world.refreshDashboardText();
+			
+		}
+		else if(lifePoints > 1 && number == 2) {
+			lifePoints = lifePoints - number;
+			world.refreshDashboardText();
+		}
+	}
 }
