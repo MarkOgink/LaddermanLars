@@ -10,7 +10,7 @@ public class HealingBigCactus extends BigCactus {
 
 	@Override
 	public void doCactusAction() {
-		// TODO Auto-generated method stub
+		int action = 6;
 		
 	}
 
