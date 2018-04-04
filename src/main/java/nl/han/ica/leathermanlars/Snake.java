@@ -11,8 +11,10 @@ public abstract class Snake extends AnimatedSpriteObject implements ICollidableW
 	private float ySpawn;
 	private LeathermanLars world;
 	
-	public Snake(LeathermanLars world) {
+	public Snake(LeathermanLars world, float x, float y) {
 		this(world, new Sprite("src/main/java/nl/han/ica/leathermanlars/media/snake.png"), 2);
+		xSpawn = x;
+		ySpawn = y;
 	}
 	
 	private Snake(LeathermanLars world, Sprite sprite, int totalFrames) {

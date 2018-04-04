@@ -3,14 +3,13 @@ package nl.han.ica.leathermanlars;
 import nl.han.ica.leathermanlars.Snake;
 
 public class AggresiveSnake extends Snake {
-	
 
-	public AggresiveSnake(LeathermanLars world) {
-		super(world);
+	public AggresiveSnake(LeathermanLars world, float x, float y) {
+		super(world, x, y);
 	}
 	
 	public boolean isAlert() {
-		if((getWorld().player.getX()-getX() <= 200 || getWorld().player.getX()-getX() >= 200) && getWorld().player.getY() - getY() <= 0)
+		if((getWorld().player.getX()-getX() <= 200 || getWorld().player.getX()-getX() >= 200) && getWorld().player.getY() - getY() <= 0 && getY() - getWorld().player.getY() <= 100)
 		{
 			return true;
 		}

@@ -2,8 +2,8 @@ package nl.han.ica.leathermanlars;
 
 public class NonAggresiveSnake extends Snake {
 
-	public NonAggresiveSnake(LeathermanLars world) {
-		super(world);
+	public NonAggresiveSnake(LeathermanLars world, float x, float y) {
+		super(world, x, y);
 	}
 
 	@Override
