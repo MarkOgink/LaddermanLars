@@ -21,6 +21,7 @@ public class LeathermanLars extends GameEngine{
 	private Sound backgroundSound;
 	public Player player;
 	private TextObject dashboardText;
+	private TextObject dashboardTextEnd;
 
 	public static void main(String[] args) {
 		PApplet.main(new String[]{"nl.han.ica.leathermanlars.LeathermanLars"});
@@ -33,6 +34,7 @@ public class LeathermanLars extends GameEngine{
         
         initializeSound();
         createDashBoard(worldWidth, 100);
+        createDashBoardEnd(worldWidth, 100);
         initializeTileMap();
         createObjects();
 		createViewWithViewport(worldWidth, worldHeight, 975, 700, 1.75f);
@@ -70,7 +72,7 @@ public class LeathermanLars extends GameEngine{
 		trackSelected = true;
 	}
 	
-	private void createObjects() {
+	public void createObjects() {
         player = new Player(this);
         Finish endpoint = new Finish(player, this);
         AggresiveSnake snake = new AggresiveSnake(this, 300, 550);
@@ -81,15 +83,21 @@ public class LeathermanLars extends GameEngine{
         HealingBigCactus hbc = new HealingBigCactus(this, player);
         HealingSmallCactus hsc = new HealingSmallCactus(this, player);
         player.setGravity(0.5f);
-        addGameObject(player, 300, 675-player.getHeight());
-        addGameObject(endpoint, 880, 140 - endpoint.getHeight());
-        addGameObject(snake, 300, 550-snake.getHeight());
-        addGameObject(ebc, 150, 550-ebc.getHeight());
-        addGameObject(dsc, 920, 675 - dsc.getHeight());
-        addGameObject(hbc, 800, 550-hbc.getHeight());
-        addGameObject(dbc, 500, 550-dbc.getHeight());
-        addGameObject(esc, 800, 375 - esc.getHeight());
-        addGameObject(hsc, 840, 375 - esc.getHeight());
+        
+        
+	    addGameObject(player, 300, 675-player.getHeight());
+	    addGameObject(endpoint, 880, 140 - endpoint.getHeight());
+	    addGameObject(snake, 300, 550-snake.getHeight());
+	    addGameObject(ebc, 150, 550-ebc.getHeight());
+	    addGameObject(dsc, 920, 675 - dsc.getHeight());
+	    addGameObject(hbc, 800, 550-hbc.getHeight());
+	    addGameObject(dbc, 500, 550-dbc.getHeight());
+	    addGameObject(esc, 800, 375 - esc.getHeight());
+	    addGameObject(hsc, 840, 375 - esc.getHeight());
+        
+        
+        
+        
     }
 	
 	private void createDashBoard(int dashboardWidth, int dashboardHeight) {
@@ -99,6 +107,12 @@ public class LeathermanLars extends GameEngine{
         addDashboard(dashboard);
 	}
 	
+	private void createDashBoardEnd(int dashboardWidth, int dashboardHeight) {
+		Dashboard dashboard = new Dashboard(200, 0, dashboardWidth, dashboardHeight);
+		dashboardTextEnd=new TextObject("");
+        dashboard.addGameObject(dashboardTextEnd);
+        addDashboard(dashboard);
+	}
 	private void initializeTileMap() {
 		TileType [] tileTypes = initializeTileTypes();
 		int tileSize=25;
@@ -160,4 +174,9 @@ public class LeathermanLars extends GameEngine{
 	public void refreshDashboardText() {
 		dashboardText.setText("Lifepoints: "+player.getLifePoints());
 	}
+	
+	public void refreshDashboardTextEnd() {
+		dashboardTextEnd.setText("YOU WON!");
+	}
+	
 }

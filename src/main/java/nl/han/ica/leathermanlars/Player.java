@@ -93,8 +93,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 			}
 			
 			if(g instanceof Finish) {
-				((Finish) g).resetPlayer();
-				((Finish) g).resetGame();
+				((Finish) g).endGame();
 			}
 		}
 		

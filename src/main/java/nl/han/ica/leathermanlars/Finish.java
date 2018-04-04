@@ -18,17 +18,9 @@ public class Finish extends SpriteObject{
 		super(sprite);
 	}
 	
-	public void resetPlayer() {
-		player.setX(300);
-		player.setY(675 - player.getHeight());
+	public void endGame() {
+		world.refreshDashboardTextEnd();
 	}
-	
-	public void resetGame() {
-		if(player.getLifePoints() < 3) {
-			player.setLifePoints(3);
-		}
-	}
-
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
