@@ -19,6 +19,10 @@ import processing.core.PApplet;
 public class LeathermanLars extends GameEngine{
 	private boolean trackSelected = false;
 	private Sound backgroundSound;
+	public Sound spawnSound;
+	public Sound finishSound;
+	public Sound dieSound;
+	public Sound shootSound;
 	public Player player;
 	private TextObject dashboardText;
 	private TextObject dashboardTextEnd;
@@ -54,7 +58,13 @@ public class LeathermanLars extends GameEngine{
 	private void initializeSound() {
 		Random rand = new Random();
 		int track = rand.nextInt(4) + 1;
-
+		spawnSound = new Sound(this, "src/main/java/nl/han/ica/leathermanlars/media/hisssound.mp3");
+		finishSound = new Sound(this, "src/main/java/nl/han/ica/leathermanlars/media/endmusic.mp3");
+		dieSound = new Sound(this, "src/main/java/nl/han/ica/leathermanlars/media/spawnsound.mp3");
+		shootSound = new Sound(this, "src/main/java/nl/han/ica/leathermanlars/media/shootingsound.mp3");
+		shootSound.play();
+		
+		
 		if(track == 1 && !trackSelected) {
 			backgroundSound = new Sound(this, "src/main/java/nl/han/ica/leathermanlars/media/analeg.mp3");
 		}

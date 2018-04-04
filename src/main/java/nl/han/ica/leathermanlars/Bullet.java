@@ -53,6 +53,7 @@ public class Bullet extends AnimatedSpriteObject implements ICollidableWithGameO
 					world.deleteGameObject(this);
 					world.deleteGameObject(g);
 					player.increaseKills();
+					world.dieSound.play();
 				}
 			}	
 		}

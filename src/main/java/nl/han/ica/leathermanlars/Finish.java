@@ -20,6 +20,7 @@ public class Finish extends SpriteObject{
 	
 	public void endGame() {
 		world.refreshDashboardTextEnd();
+		world.finishSound.play();
 	}
 	@Override
 	public void update() {

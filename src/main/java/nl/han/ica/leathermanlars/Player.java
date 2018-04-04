@@ -71,10 +71,12 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 	        if (key == 's' && currentFrame == 1) {
 	        	Bullet bulletRight = new Bullet(world, 1, this);
 	            world.addGameObject(bulletRight, this.getX() + this.getWidth(), this.getY());
+	            world.shootSound.play();
 	        }
 	        if (key == 's' && currentFrame == 0) {
 	        	Bullet bulletLeft = new Bullet (world, 0, this);
 	            world.addGameObject(bulletLeft, this.getX(), this.getY());
+	            world.shootSound.play();
 	        }
 	    }
 	    else if(onRope) {

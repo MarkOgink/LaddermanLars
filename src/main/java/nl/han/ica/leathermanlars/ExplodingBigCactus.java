@@ -14,6 +14,7 @@ public class ExplodingBigCactus extends BigCactus {
 		world.deleteGameObject(this);
 		snake = new NonAggresiveSnake(world, getX(), getY());
 		world.addGameObject(snake, this.getX(), this.getY() + (this.getHeight() - snake.getHeight()));
+		world.spawnSound.play();
 		
 	}
 
