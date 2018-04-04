@@ -1,6 +1,7 @@
 package nl.han.ica.leathermanlars;
 
 import nl.han.ica.waterworld.*;
+import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
 import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
 //import com.sun.prism.image.ViewPort;
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
@@ -15,6 +16,7 @@ import processing.core.PApplet;
 
 @SuppressWarnings("serial")
 public class LeathermanLars extends GameEngine{
+	private Sound backgroundSound;
 	private Player player;
 	private TextObject dashboardText;
 
@@ -26,6 +28,8 @@ public class LeathermanLars extends GameEngine{
 	public void setupGame() {
 		int worldWidth=1000;
         int worldHeight=700;
+        
+        initializeSound();
         
         initializeTileMap();
         createObjects();
@@ -40,6 +44,11 @@ public class LeathermanLars extends GameEngine{
         size(screenWidth, screenHeight);
         view.setBackground(loadImage("src/main/java/nl/han/ica/leathermanLars/media/achtergrond.png"));
     }
+	
+	private void initializeSound() {
+		backgroundSound = new Sound(this, "src/main/java/nl/han/ica/leathermanlars/media/analeg.mp3");
+		backgroundSound.loop(-1);
+	}
 	private void createObjects() {
         player = new Player(this);
         Snake snake = new Snake(this);
