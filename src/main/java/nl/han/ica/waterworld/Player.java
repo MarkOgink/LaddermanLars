@@ -8,7 +8,6 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.AnimatedSpriteObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.waterworld.tiles.BoardsTile;
-import nl.han.ica.waterworld.tiles.solidTile;
 import processing.core.PVector;
 
 import java.util.List;

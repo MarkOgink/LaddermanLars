@@ -8,7 +8,6 @@ import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithTiles;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
 import nl.han.ica.waterworld.tiles.BoardsTile;
-import nl.han.ica.waterworld.tiles.solidTile;
 import processing.core.PGraphics;
 
 import java.util.List;
@@ -76,7 +75,7 @@ public class Bubble extends GameObject implements ICollidableWithGameObjects, IC
     public void tileCollisionOccurred(List<CollidedTile> collidedTiles) {
     	PVector vector;
     	 for (CollidedTile ct : collidedTiles) {
-             if (ct.theTile instanceof solidTile) {
+             if (ct.theTile instanceof BoardsTile) {
                  if (ct.collisionSide == ct.BOTTOM) {
                      try {
                          vector = world.getTileMap().getTilePixelLocation(ct.theTile);

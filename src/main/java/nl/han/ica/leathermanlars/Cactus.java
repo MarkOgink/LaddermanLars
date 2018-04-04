@@ -9,7 +9,6 @@ public abstract class Cactus extends SpriteObject {
 		super(sprite);
 		
 	}
-	
 	public abstract void doCactusAction();
 	
 }

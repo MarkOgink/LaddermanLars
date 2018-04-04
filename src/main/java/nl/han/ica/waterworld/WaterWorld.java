@@ -12,7 +12,6 @@ import nl.han.ica.OOPDProcessingEngineHAN.Tile.TileType;
 import nl.han.ica.OOPDProcessingEngineHAN.View.EdgeFollowingViewport;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import nl.han.ica.waterworld.tiles.BoardsTile;
-import nl.han.ica.waterworld.tiles.solidTile;
 import processing.core.PApplet;
 
 /**
@@ -149,9 +148,9 @@ public class WaterWorld extends GameEngine {
         /* TILES */
         Sprite boardsSprite = new Sprite("src/main/java/nl/han/ica/waterworld/media/boards.jpg");
         TileType<BoardsTile> boardTileType = new TileType<>(BoardsTile.class, boardsSprite);
-        TileType<solidTile> solidTileType = new TileType<>(solidTile.class, boardsSprite);
+//        TileType<solidTile> solidTileType = new TileType<>(solidTile.class, boardsSprite);
 
-        TileType[] tileTypes = { boardTileType, solidTileType };
+        TileType[] tileTypes = { boardTileType };
         int tileSize=50;
         int tilesMap[][]={
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
