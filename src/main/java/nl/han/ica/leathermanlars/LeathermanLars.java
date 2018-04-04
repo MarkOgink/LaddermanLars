@@ -7,7 +7,7 @@ import nl.han.ica.OOPDProcessingEngineHAN.Tile.TileMap;
 import nl.han.ica.OOPDProcessingEngineHAN.Tile.TileType;
 import nl.han.ica.OOPDProcessingEngineHAN.View.EdgeFollowingViewport;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
-import nl.han.ica.waterworld.TextObject;
+import nl.han.ica.leathermanlars.TextObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
 import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
 import processing.core.PApplet;
@@ -58,7 +58,7 @@ public class LeathermanLars extends GameEngine{
 	
 	private void createDashBoard(int dashboardWidth, int dashboardHeight) {
 		Dashboard dashboard = new Dashboard(0,0, dashboardWidth, dashboardHeight);
-		dashboardText=new TextObject("Levens");
+		dashboardText=new TextObject("Aantal Levens");
         dashboard.addGameObject(dashboardText);
         addDashboard(dashboard);
 	}
