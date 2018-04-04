@@ -9,11 +9,15 @@ import nl.han.ica.OOPDProcessingEngineHAN.View.EdgeFollowingViewport;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import nl.han.ica.leathermanlars.TextObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
+
+import java.util.Random;
+
 import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
 import processing.core.PApplet;
 
 @SuppressWarnings("serial")
 public class LeathermanLars extends GameEngine{
+	private boolean trackSelected = false;
 	private Sound backgroundSound;
 	public Player player;
 	private TextObject dashboardText;
@@ -44,13 +48,32 @@ public class LeathermanLars extends GameEngine{
     }
 	
 	private void initializeSound() {
-		backgroundSound = new Sound(this, "src/main/java/nl/han/ica/leathermanlars/media/analeg.mp3");
+		Random rand = new Random();
+		int track = rand.nextInt(4) + 1;
+
+		if(track == 1 && !trackSelected) {
+			backgroundSound = new Sound(this, "src/main/java/nl/han/ica/leathermanlars/media/analeg.mp3");
+		}
+
+		else if(track == 2 && !trackSelected) {
+			backgroundSound = new Sound(this, "src/main/java/nl/han/ica/leathermanlars/media/fraud_3.mp3");
+		}
+
+		else if(track == 3 && !trackSelected) {
+			backgroundSound = new Sound(this, "src/main/java/nl/han/ica/leathermanlars/media/innit.mp3");
+		}
+
+		else if(track == 4 && !trackSelected) {
+			backgroundSound = new Sound(this, "src/main/java/nl/han/ica/leathermanlars/media/pleck 6.mp3");
+		}
 		backgroundSound.loop(-1);
+		trackSelected = true;
 	}
 	
 	private void createObjects() {
         player = new Player(this);
-        NonAggresiveSnake snake = new NonAggresiveSnake(this, 300, 550);
+        Finish endpoint = new Finish(player, this);
+        AggresiveSnake snake = new AggresiveSnake(this, 300, 550);
         ExplodingBigCactus ebc = new ExplodingBigCactus(this);
         ExplodingSmallCactus esc = new ExplodingSmallCactus(this);
         DamagingBigCactus dbc = new DamagingBigCactus(this, player);
@@ -59,13 +82,14 @@ public class LeathermanLars extends GameEngine{
         HealingSmallCactus hsc = new HealingSmallCactus(this, player);
         player.setGravity(0.5f);
         addGameObject(player, 300, 675-player.getHeight());
+        addGameObject(endpoint, 880, 140 - endpoint.getHeight());
         addGameObject(snake, 300, 550-snake.getHeight());
         addGameObject(ebc, 150, 550-ebc.getHeight());
-        addGameObject(dsc, 500, 675 - dsc.getHeight());
+        addGameObject(dsc, 920, 675 - dsc.getHeight());
         addGameObject(hbc, 800, 550-hbc.getHeight());
         addGameObject(dbc, 500, 550-dbc.getHeight());
-        addGameObject(esc, 500, 375 - esc.getHeight());
-        addGameObject(hsc, 700, 375 - esc.getHeight());
+        addGameObject(esc, 800, 375 - esc.getHeight());
+        addGameObject(hsc, 840, 375 - esc.getHeight());
     }
 	
 	private void createDashBoard(int dashboardWidth, int dashboardHeight) {

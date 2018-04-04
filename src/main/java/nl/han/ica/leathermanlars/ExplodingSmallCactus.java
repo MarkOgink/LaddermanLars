@@ -1,12 +1,10 @@
 package nl.han.ica.leathermanlars;
 
-import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
-import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 
 public class ExplodingSmallCactus extends SmallCactus {
 
 	private LeathermanLars world;
-	private Snake SmallSnake;
+	private NonAggresiveSnake SmallSnake;
 	
 	public ExplodingSmallCactus(LeathermanLars world) {
 		this.world = world;
@@ -15,7 +13,7 @@ public class ExplodingSmallCactus extends SmallCactus {
 	@Override
 	public void doCactusAction() {
 		world.deleteGameObject(this);
-		SmallSnake = new AggresiveSnake(world, getX(), getY());
+		SmallSnake = new NonAggresiveSnake(world, getX(), getY());
 		world.addGameObject(SmallSnake, this.getX(), this.getY() + (this.getHeight() - SmallSnake.getHeight()));
 	}
 

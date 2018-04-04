@@ -9,7 +9,7 @@ public class Finish extends SpriteObject{
 	private LeathermanLars world;
 	
 	public Finish(Player player, LeathermanLars world) {
-		this(new Sprite("src/main/java/nl/han/ica/leathermanlars/media/cactus.png"));
+		this(new Sprite("src/main/java/nl/han/ica/leathermanlars/media/waterwell.png"));
 		this.player = player;
 		this.world = world;
 	}
@@ -21,6 +21,12 @@ public class Finish extends SpriteObject{
 	public void resetPlayer() {
 		player.setX(300);
 		player.setY(675 - player.getHeight());
+	}
+	
+	public void resetGame() {
+		if(player.getLifePoints() < 3) {
+			player.setLifePoints(3);
+		}
 	}
 
 	@Override

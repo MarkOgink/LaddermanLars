@@ -91,6 +91,11 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 			if(g instanceof Cactus) {
 				((Cactus) g).doCactusAction();
 			}
+			
+			if(g instanceof Finish) {
+				((Finish) g).resetPlayer();
+				((Finish) g).resetGame();
+			}
 		}
 		
 	}
@@ -100,6 +105,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 	}
 	public void setLifePoints(int number) {
 		lifePoints = number;
+		world.refreshDashboardText();
 	}
 	
 	public void increaseLifePoints(int number) {
