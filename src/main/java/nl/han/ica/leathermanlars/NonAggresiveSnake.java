@@ -1,5 +1,9 @@
 package nl.han.ica.leathermanlars;
 
+import java.util.List;
+
+import nl.han.ica.OOPDProcessingEngineHAN.Collision.CollidedTile;
+
 public class NonAggresiveSnake extends Snake {
 
 	public NonAggresiveSnake(LeathermanLars world, float x, float y) {
@@ -17,5 +21,4 @@ public class NonAggresiveSnake extends Snake {
 			setxSpeed(1);
 		}
 	}
-
 }

@@ -1,17 +1,31 @@
 package nl.han.ica.leathermanlars;
 
+import java.util.List;
+
+import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithTiles;
 import nl.han.ica.leathermanlars.Snake;
 
-public class AggresiveSnake extends Snake {
+public class AggresiveSnake extends Snake implements ICollidableWithTiles {
 
 	public AggresiveSnake(LeathermanLars world, float x, float y) {
 		super(world, x, y);
 	}
 	
 	public boolean isAlert() {
-		if((getWorld().player.getX()-getX() <= 200 || getWorld().player.getX()-getX() >= 200) && getWorld().player.getY() - getY() <= 0 && getY() - getWorld().player.getY() <= 100)
-		{
-			return true;
+		float snakeX = getX();
+		float playerX = getWorld().player.getX();
+		float snakeY = getY();
+		float playerY = getWorld().player.getY();
+		if(playerY - snakeY < 100 && snakeY - playerY < 100) {
+			if(snakeX - playerX <= 200 && snakeX > playerX)
+			{
+				return true;
+			}
+			if(playerX - snakeX <= 200 && playerX > snakeX) 
+			{
+				return true;
+			}
+			else return false;
 		}
 		else return false;
 	}

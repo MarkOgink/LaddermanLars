@@ -98,7 +98,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 			if(ct.theTile instanceof GroundTile) {
 				if(ct.collisionSide == ct.TOP) {
 					vector = world.getTileMap().getTilePixelLocation(ct.theTile);
-					setY(vector.y - 2*ct.theTile.getSprite().getHeight());
+					setY(vector.y - getHeight());
 				}
 			}
 			if(ct.theTile instanceof GroundTile) {
