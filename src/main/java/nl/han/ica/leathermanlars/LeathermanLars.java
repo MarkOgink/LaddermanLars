@@ -90,7 +90,7 @@ public class LeathermanLars extends GameEngine{
         
         
 	    addGameObject(player, 300, 675-player.getHeight());
-	    addGameObject(rope, 500, 550);
+	    addGameObject(rope, 500, 575);
 	    addGameObject(endpoint, 880, 140 - endpoint.getHeight());
 	    addGameObject(snake, 300, 550-snake.getHeight());
 	    addGameObject(ebc, 150, 550-ebc.getHeight());

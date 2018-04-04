@@ -14,7 +14,6 @@ import processing.core.PVector;
 public class Player extends AnimatedSpriteObject implements ICollidableWithTiles, ICollidableWithGameObjects {
 	final int size=25;
 	private final LeathermanLars world;
-	private boolean inRope = false;
 	private boolean onRope = false;
 	private int lifePoints = 3;
 	private int numberOfKills = 0;
@@ -85,7 +84,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 	        else if(keyCode == world.UP) {
 	        	setDirectionSpeed(0, speed/2);
 	        }
-	        else if(keyCode == world.DOWN && inRope) {
+	        else if(keyCode == world.DOWN) {
 	        	setDirectionSpeed(180, speed/2);
 	        }
 	    }
