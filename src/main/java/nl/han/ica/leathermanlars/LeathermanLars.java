@@ -77,6 +77,7 @@ public class LeathermanLars extends GameEngine{
 	public void createObjects() {
         player = new Player(this);
         Finish endpoint = new Finish(player, this);
+        Rope rope = new Rope();
         AggresiveSnake snake = new AggresiveSnake(this, 300, 550);
         ExplodingBigCactus ebc = new ExplodingBigCactus(this);
         ExplodingSmallCactus esc = new ExplodingSmallCactus(this);
@@ -87,7 +88,9 @@ public class LeathermanLars extends GameEngine{
         player.setGravity(0.5f);
         
         
+        
 	    addGameObject(player, 300, 675-player.getHeight());
+	    addGameObject(rope, 500, 550);
 	    addGameObject(endpoint, 880, 140 - endpoint.getHeight());
 	    addGameObject(snake, 300, 550-snake.getHeight());
 	    addGameObject(ebc, 150, 550-ebc.getHeight());

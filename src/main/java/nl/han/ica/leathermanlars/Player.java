@@ -14,6 +14,8 @@ import processing.core.PVector;
 public class Player extends AnimatedSpriteObject implements ICollidableWithTiles, ICollidableWithGameObjects {
 	final int size=25;
 	private final LeathermanLars world;
+	private boolean inRope = false;
+	private boolean onRope = false;
 	private int lifePoints = 3;
 	private int numberOfKills = 0;
 	private int currentFrame;
@@ -49,30 +51,44 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 	@Override
     public void keyPressed(int keyCode, char key) {
         final int speed = 5;
-        if (keyCode == world.LEFT) {
-            setDirectionSpeed(270, speed);
-            setCurrentFrameIndex(1);
-            currentFrame = 0;
-        }
-        if (keyCode == world.UP) {
-            setDirectionSpeed(0, speed*2);
-        }
-        if (keyCode == world.RIGHT) {
-            setDirectionSpeed(90, speed);
-            setCurrentFrameIndex(0);
-            currentFrame = 1;
-        }
-        if (keyCode == world.DOWN) {
-            setDirectionSpeed(180, speed);
-        }
-        if (key == 's' && currentFrame == 1) {
-        	Bullet bulletRight = new Bullet(world, 1, this);
-            world.addGameObject(bulletRight, this.getX() + this.getWidth(), this.getY());
-        }
-        if (key == 's' && currentFrame == 0) {
-        	Bullet bulletLeft = new Bullet (world, 0, this);
-            world.addGameObject(bulletLeft, this.getX(), this.getY());
-        }
+	    if(!onRope) {
+        	if (keyCode == world.LEFT) {
+	            setDirectionSpeed(270, speed);
+	            setCurrentFrameIndex(1);
+	            currentFrame = 0;
+	        }
+	        if (keyCode == world.UP) {
+	            setDirectionSpeed(0, speed*2);
+	        }
+	       
+	        if (keyCode == world.RIGHT) {
+	            setDirectionSpeed(90, speed);
+	            setCurrentFrameIndex(0);
+	            currentFrame = 1;
+	        }
+	        if (keyCode == world.DOWN) {
+	            setDirectionSpeed(180, speed);
+	        }
+	        if (key == 's' && currentFrame == 1) {
+	        	Bullet bulletRight = new Bullet(world, 1, this);
+	            world.addGameObject(bulletRight, this.getX() + this.getWidth(), this.getY());
+	        }
+	        if (key == 's' && currentFrame == 0) {
+	        	Bullet bulletLeft = new Bullet (world, 0, this);
+	            world.addGameObject(bulletLeft, this.getX(), this.getY());
+	        }
+	    }
+	    else if(onRope) {
+	        if(key == 'f') {
+	        	this.setGravity(0.5f);
+	        }
+	        else if(keyCode == world.UP) {
+	        	setDirectionSpeed(0, speed/2);
+	        }
+	        else if(keyCode == world.DOWN && inRope) {
+	        	setDirectionSpeed(180, speed/2);
+	        }
+	    }
     }
 
 	@Override
@@ -92,6 +108,12 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 					setY(vector.y + ct.theTile.getSprite().getHeight());
 				}
 			}
+			if(ct.theTile instanceof GroundTile) {
+				if(ct.collisionSide == ct.TOP) {
+					onRope = false;
+					this.setGravity(0.5f);
+				}
+			}
 		}
 		
 	}
@@ -103,8 +125,13 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 				((Cactus) g).doCactusAction();
 			}
 			
-			if(g instanceof Finish) {
+			else if(g instanceof Finish) {
 				((Finish) g).endGame();
+			}
+			
+			else if(g instanceof Rope && onRope == false) {
+				onRope = true;
+				this.setGravity(0);
 			}
 		}
 		
