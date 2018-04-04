@@ -16,7 +16,7 @@ public class Bullet extends AnimatedSpriteObject implements ICollidableWithGameO
 	private Player player;
 	
 	public Bullet(LeathermanLars world, int direction, Player player) {
-		this(new Sprite("src/main/java/nl/han/ica/leathermanlars/media/cactusklein.png"));
+		this(new Sprite("src/main/java/nl/han/ica/leathermanlars/media/bullet.png"));
 		this.world = world;
 		this.player = player;
 		this.direction = direction;
