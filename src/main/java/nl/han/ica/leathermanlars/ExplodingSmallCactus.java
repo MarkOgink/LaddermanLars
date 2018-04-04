@@ -15,7 +15,7 @@ public class ExplodingSmallCactus extends SmallCactus {
 	@Override
 	public void doCactusAction() {
 		world.deleteGameObject(this);
-		SmallSnake = new Snake(world);
+		SmallSnake = new AggresiveSnake(world);
 		world.addGameObject(SmallSnake, this.getX(), this.getY() + (this.getHeight() - SmallSnake.getHeight()));
 	}
 

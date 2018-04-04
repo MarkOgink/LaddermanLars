@@ -50,7 +50,7 @@ public class LeathermanLars extends GameEngine{
 	
 	private void createObjects() {
         player = new Player(this);
-        Snake snake = new Snake(this);
+        NonAggresiveSnake snake = new NonAggresiveSnake(this);
         ExplodingBigCactus ebc = new ExplodingBigCactus(this);
         ExplodingSmallCactus esc = new ExplodingSmallCactus(this);
         DamagingBigCactus dbc = new DamagingBigCactus(this, player);
