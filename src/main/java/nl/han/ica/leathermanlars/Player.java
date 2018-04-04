@@ -5,6 +5,7 @@ import java.util.List;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.CollidedTile;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithTiles;
+import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.AnimatedSpriteObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
@@ -14,11 +15,14 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 	final int size=25;
 	private final LeathermanLars world;
 	private int lifePoints = 3;
+	private int numberOfKills = 0;
+	private int currentFrame;
 
 	public Player(LeathermanLars world) {
 		super(new Sprite("src/main/java/nl/han/ica/leathermanlars/media/lars.png"), 2);
 		this.world = world;
 		setCurrentFrameIndex(0);
+		currentFrame = 0;
         setFriction(0.1f);
 	}
 
@@ -48,6 +52,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         if (keyCode == world.LEFT) {
             setDirectionSpeed(270, speed);
             setCurrentFrameIndex(1);
+            currentFrame = 0;
         }
         if (keyCode == world.UP) {
             setDirectionSpeed(0, speed*2);
@@ -55,12 +60,18 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         if (keyCode == world.RIGHT) {
             setDirectionSpeed(90, speed);
             setCurrentFrameIndex(0);
+            currentFrame = 1;
         }
         if (keyCode == world.DOWN) {
             setDirectionSpeed(180, speed);
         }
-        if (key == ' ') {
-            System.out.println("Spatie!");
+        if (key == 's' && currentFrame == 1) {
+        	Bullet bulletRight = new Bullet(world, 1, this);
+            world.addGameObject(bulletRight, this.getX() + this.getWidth(), this.getY());
+        }
+        if (key == 's' && currentFrame == 0) {
+        	Bullet bulletLeft = new Bullet (world, 0, this);
+            world.addGameObject(bulletLeft, this.getX(), this.getY());
         }
     }
 
@@ -122,5 +133,14 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 			lifePoints = lifePoints - number;
 			world.refreshDashboardText();
 		}
+	}
+	
+	public void increaseKills() {
+		numberOfKills++;
+		world.refreshDashboardTextKills();
+	}
+	
+	public int getNumberOfKills() {
+		return numberOfKills;
 	}
 }

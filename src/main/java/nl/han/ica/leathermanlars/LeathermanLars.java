@@ -22,6 +22,7 @@ public class LeathermanLars extends GameEngine{
 	public Player player;
 	private TextObject dashboardText;
 	private TextObject dashboardTextEnd;
+	private TextObject dashboardTextKills;
 
 	public static void main(String[] args) {
 		PApplet.main(new String[]{"nl.han.ica.leathermanlars.LeathermanLars"});
@@ -35,6 +36,7 @@ public class LeathermanLars extends GameEngine{
         initializeSound();
         createDashBoard(worldWidth, 100);
         createDashBoardEnd(worldWidth, 100);
+        createDashBoardKills(worldWidth, 100);
         initializeTileMap();
         createObjects();
 		createViewWithViewport(worldWidth, worldHeight, 975, 700, 1.75f);
@@ -113,6 +115,13 @@ public class LeathermanLars extends GameEngine{
         dashboard.addGameObject(dashboardTextEnd);
         addDashboard(dashboard);
 	}
+	
+	private void createDashBoardKills(int dashboardWidth, int dashboardHeight) {
+		Dashboard dashboard = new Dashboard(350, 0, dashboardWidth, dashboardHeight);
+		dashboardTextKills=new TextObject("Number of kills: 0");
+		dashboard.addGameObject(dashboardTextKills);
+		addDashboard(dashboard);
+	}
 	private void initializeTileMap() {
 		TileType [] tileTypes = initializeTileTypes();
 		int tileSize=25;
@@ -177,6 +186,10 @@ public class LeathermanLars extends GameEngine{
 	
 	public void refreshDashboardTextEnd() {
 		dashboardTextEnd.setText("YOU WON!");
+	}
+	
+	public void refreshDashboardTextKills() {
+		dashboardTextKills.setText("Number of kills: "+player.getNumberOfKills());
 	}
 	
 }
