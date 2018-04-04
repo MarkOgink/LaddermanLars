@@ -6,17 +6,17 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 public class ExplodingSmallCactus extends SmallCactus {
 
 	private LeathermanLars world;
-	private Snake snake;
+	private Snake SmallSnake;
 	
 	public ExplodingSmallCactus(LeathermanLars world) {
 		this.world = world;
-		snake = new Snake(world);
-		world.addGameObject(snake, this.getX(), this.getY() + (this.getHeight() - snake.getHeight()));
 	}
 
 	@Override
 	public void doCactusAction() {
 		world.deleteGameObject(this);
+		SmallSnake = new Snake(world);
+		world.addGameObject(SmallSnake, this.getX(), this.getY() + (this.getHeight() - SmallSnake.getHeight()));
 	}
 
 	@Override
