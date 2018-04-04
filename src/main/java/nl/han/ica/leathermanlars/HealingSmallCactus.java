@@ -9,8 +9,8 @@ public class HealingSmallCactus extends SmallCactus {
 
 	@Override
 	public void doCactusAction() {
-		// TODO Auto-generated method stub
-		
+		world.increaseLifePoints(1);
+		world.deleteGameObject(this);
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package nl.han.ica.leathermanlars;
 public class ExplodingBigCactus extends BigCactus {
 	
 	private LeathermanLars world;
+	private Snake snake;
 	
 	public ExplodingBigCactus(LeathermanLars world) {
 		this.world = world;
@@ -10,7 +11,9 @@ public class ExplodingBigCactus extends BigCactus {
 
 	@Override
 	public void doCactusAction() {
-		// TODO Auto-generated method stub
+		world.deleteGameObject(this);
+		snake = new Snake(world);
+		world.addGameObject(snake, this.getX(), this.getY() + (this.getHeight() - snake.getHeight()));
 		
 	}
 

@@ -3,15 +3,16 @@ package nl.han.ica.leathermanlars;
 import java.util.List;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.CollidedTile;
+import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithTiles;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.AnimatedSpriteObject;
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import processing.core.PVector;
 
-public class Player extends AnimatedSpriteObject implements ICollidableWithTiles {
+public class Player extends AnimatedSpriteObject implements ICollidableWithTiles, ICollidableWithGameObjects {
 	final int size=25;
 	private final LeathermanLars world;
-	private int lifePoints = 3;
 
 	public Player(LeathermanLars world) {
 		super(new Sprite("src/main/java/nl/han/ica/leathermanlars/media/lars.png"), 2);
@@ -82,6 +83,15 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 		}
 		
 	}
-	
+
+	@Override
+	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
+		for(GameObject g:collidedGameObjects) {
+			if(g instanceof Cactus) {
+				((Cactus) g).doCactusAction();
+			}
+		}
+		
+	}
 	
 }

@@ -10,8 +10,8 @@ public class HealingBigCactus extends BigCactus {
 
 	@Override
 	public void doCactusAction() {
-		int action = 6;
-		
+		world.increaseLifePoints(2);
+		world.deleteGameObject(this);		
 	}
 
 	@Override

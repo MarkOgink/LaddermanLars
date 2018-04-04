@@ -10,7 +10,8 @@ public class DamagingSmallCactus extends SmallCactus {
 
 	@Override
 	public void doCactusAction() {
-		// TODO Auto-generated method stub
+		world.decreaseLifePoints(1);
+		world.deleteGameObject(this);
 		
 	}
 
