@@ -1,14 +1,23 @@
 package nl.han.ica.leathermanlars;
 
-import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
-import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
-
+/*
+ * @author Timo Kloks & Mark Ogink
+ * Klasse voor grote cactus die damage doet
+ */
 public class DamagingBigCactus extends BigCactus {
-	
-	public DamagingBigCactus(LeathermanLars world, Player player) {
+	/*
+	 * Constructor
+	 * @param world Referentie naar wereld
+	 */
+	public DamagingBigCactus(LeathermanLars world) {
 		super(world);
 	}
-
+	
+	/*
+	 * Functie die de spelers levenspunten met twee verlaagt, mits deze groter dan 0 is.
+	 * Anders wordt de speler teruggestuurt naar start. Hierna wordt het object verwijderd. 
+	 * 
+	 */
 	@Override
 	public void doCactusAction() {
 		world.player.decreaseLifePoints(2);

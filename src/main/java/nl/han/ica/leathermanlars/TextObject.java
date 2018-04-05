@@ -2,7 +2,10 @@ package nl.han.ica.leathermanlars;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import processing.core.PGraphics;
-
+/*
+ * @author Ralph Niels
+ * Klasse voor textobject
+ */
 public class TextObject extends GameObject{
 	
 	private String text;

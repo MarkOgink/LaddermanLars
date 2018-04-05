@@ -1,5 +1,8 @@
 package nl.han.ica.leathermanlars;
-
+/*
+ * @author Timo Kloks & Mark Ogink
+ * klasse voor de kogel 
+ */
 import java.util.List;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.CollidedTile;
@@ -15,6 +18,12 @@ public class Bullet extends AnimatedSpriteObject implements ICollidableWithGameO
 	private int direction;
 	private Player player;
 	
+	/*
+	 * Constructor
+	 * @param world Referentie naar de wereld
+	 * @param direction Richting van player
+	 * @param player Referentie naar player
+	 */
 	public Bullet(LeathermanLars world, int direction, Player player) {
 		this(new Sprite("src/main/java/nl/han/ica/leathermanlars/media/bullet.png"));
 		this.world = world;
@@ -22,11 +31,17 @@ public class Bullet extends AnimatedSpriteObject implements ICollidableWithGameO
 		this.direction = direction;
 		setCurrentFrameIndex(direction);
 	}
-	
+	/*
+	 * Constructor
+	 * @param sprite Afbeelding van object
+	 */
 	public Bullet(Sprite sprite) {
 		super(sprite, 2);
 	}
-
+	/*
+	 * Functie die de richting van de kogel aangeeft en deze beweegt, afhankelijk van de richting van de speler.
+	 * Als het object buiten het scherm valt wordt het object verwijderd.
+	 */
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
@@ -43,7 +58,11 @@ public class Bullet extends AnimatedSpriteObject implements ICollidableWithGameO
 			setxSpeed(5);
 		}
 	}
-
+	/*
+	 *Functie voor het detecteren van aanrakingen tussen this en andere objecten.
+	 *Wanneer het object een slang is wordt dit object verwijderd, en het slang object.
+	 *Ook wordt het aantal kills verhoogt, en speelt er een geluid.
+	 */
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 		for(GameObject g:collidedGameObjects) {
@@ -58,7 +77,10 @@ public class Bullet extends AnimatedSpriteObject implements ICollidableWithGameO
 			}	
 		}
 	}
-
+	/*
+	 * Functie voor het detecteren van aanrakingen tussen this en tiles.
+	 * Wanneer de tile een groundTile is wordt het object verwijderd.
+	 */
 	@Override
 	public void tileCollisionOccurred(List<CollidedTile> collidedTiles) {
 		PVector vector;
