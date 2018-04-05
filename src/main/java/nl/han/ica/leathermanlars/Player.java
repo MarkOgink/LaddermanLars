@@ -15,16 +15,19 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 	final int size=25;
 	private final LeathermanLars world;
 	private boolean onRope = false;
-	private int lifePoints = 3;
+	private boolean active = false;
+	private int lifePoints;
 	private int numberOfKills = 0;
 	private int currentFrame;
 
 	public Player(LeathermanLars world) {
 		super(new Sprite("src/main/java/nl/han/ica/leathermanlars/media/lars.png"), 2);
 		this.world = world;
+		lifePoints = 3;
 		setCurrentFrameIndex(0);
 		currentFrame = 0;
         setFriction(0.1f);
+        setGravity(0.5f);
 	}
 
 	@Override
@@ -50,6 +53,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 	@Override
     public void keyPressed(int keyCode, char key) {
         final int speed = 5;
+        active = true;
 	    if(!onRope) {
         	if (keyCode == world.LEFT) {
 	            setDirectionSpeed(270, speed);
@@ -124,6 +128,12 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 		for(GameObject g:collidedGameObjects) {
 			if(g instanceof Cactus) {
 				((Cactus) g).doCactusAction();
+			}
+			
+			else if(g instanceof Snake && active) {
+					((Snake) g).doSnakeAction();
+					active = false;
+					onRope = false;
 			}
 			
 			else if(g instanceof Finish) {

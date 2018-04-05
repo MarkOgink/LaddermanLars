@@ -1,5 +1,7 @@
 package nl.han.ica.leathermanlars;
 
+import java.util.List;
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.leathermanlars.Snake;
 
 public class AggresiveSnake extends Snake {
@@ -38,5 +40,11 @@ public class AggresiveSnake extends Snake {
 				setxSpeed(1);
 			}
 		}
+	}
+
+	@Override
+	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
+		// TODO Auto-generated method stub
+		
 	}
 }

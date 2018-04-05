@@ -38,11 +38,11 @@ public class LeathermanLars extends GameEngine{
         int worldHeight=700;
         
         initializeSound();
+        createObjects();
         createDashBoard(worldWidth, 100);
         createDashBoardEnd(worldWidth, 100);
         createDashBoardKills(worldWidth, 100);
         initializeTileMap();
-        createObjects();
 		createViewWithViewport(worldWidth, worldHeight, 975, 700, 1.75f);
 	}
 	
@@ -102,9 +102,6 @@ public class LeathermanLars extends GameEngine{
         DamagingSmallCactus dsc = new DamagingSmallCactus(this, player);
         HealingBigCactus hbc = new HealingBigCactus(this, player);
         HealingSmallCactus hsc = new HealingSmallCactus(this, player);
-        player.setGravity(0.5f);
-        
-        
         
 	    addGameObject(player, 300, 675-player.getHeight());
 	    addGameObject(rope, 670, 400);
@@ -131,7 +128,7 @@ public class LeathermanLars extends GameEngine{
 	
 	private void createDashBoard(int dashboardWidth, int dashboardHeight) {
 		Dashboard dashboard = new Dashboard(0,0, dashboardWidth, dashboardHeight);
-		dashboardText=new TextObject("Lifepoints: 3");
+		dashboardText=new TextObject("Lifepoints: " + player.getLifePoints());
         dashboard.addGameObject(dashboardText);
         addDashboard(dashboard);
 	}
@@ -208,7 +205,7 @@ public class LeathermanLars extends GameEngine{
 	}
 	
 	public void refreshDashboardText() {
-		dashboardText.setText("Lifepoints: "+player.getLifePoints());
+		dashboardText.setText("Lifepoints " + player.getLifePoints());
 	}
 	
 	public void refreshDashboardTextEnd() {
@@ -218,5 +215,4 @@ public class LeathermanLars extends GameEngine{
 	public void refreshDashboardTextKills() {
 		dashboardTextKills.setText("Number of kills: "+player.getNumberOfKills());
 	}
-	
 }

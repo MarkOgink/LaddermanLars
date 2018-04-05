@@ -1,5 +1,9 @@
 package nl.han.ica.leathermanlars;
 
+import java.util.List;
+
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
+
 public class NonAggresiveSnake extends Snake {
 
 	public NonAggresiveSnake(LeathermanLars world, float x, float y) {
@@ -16,6 +20,12 @@ public class NonAggresiveSnake extends Snake {
 			setCurrentFrameIndex(1);
 			setxSpeed(1);
 		}
+	}
+
+	@Override
+	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

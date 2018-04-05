@@ -31,9 +31,15 @@ public abstract class Snake extends AnimatedSpriteObject implements ICollidableW
 		return ySpawn-getHeight();
 	}
 	
-	@Override
-	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
-		// TODO Auto-generated method stub
+	public void doSnakeAction() {
+		if(getX()<world.player.getX()) {
+			world.player.setxSpeed(20);
+			world.player.decreaseLifePoints(1);
+		}
+		else if(getX()>world.player.getX()) {
+			world.player.setxSpeed(-20);
+			world.player.decreaseLifePoints(1);
+		}
 	}
 
 	/**
