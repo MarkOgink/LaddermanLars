@@ -2,10 +2,9 @@ package nl.han.ica.leathermanlars;
 
 public class DamagingSmallCactus extends SmallCactus {
 	private Player player;
-	private LeathermanLars world;
 	
 	public DamagingSmallCactus(LeathermanLars world, Player player) {
-		this.world = world;
+		super(world);
 		this.player = player;
 	}
 

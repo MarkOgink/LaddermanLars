@@ -5,11 +5,11 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 
 public abstract class BigCactus extends Cactus {
 	
-	public BigCactus() {
-		this(new Sprite("src/main/java/nl/han/ica/leathermanlars/media/cactus.png"));
+	public BigCactus(LeathermanLars world) {
+		this(world, new Sprite("src/main/java/nl/han/ica/leathermanlars/media/cactus.png"));
 	}
 	
-	public BigCactus(Sprite sprite) {
-		super(sprite);
+	public BigCactus(LeathermanLars world, Sprite sprite) {
+		super(world, sprite);
 	}
 }

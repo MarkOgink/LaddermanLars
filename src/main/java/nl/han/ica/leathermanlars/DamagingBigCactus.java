@@ -5,10 +5,9 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 
 public class DamagingBigCactus extends BigCactus {
 	private Player player;
-	private LeathermanLars world;
 	
 	public DamagingBigCactus(LeathermanLars world, Player player) {
-		this.world = world;
+		super(world);
 		this.player = player;
 	}
 

@@ -11,9 +11,18 @@ public class AggresiveSnake extends Snake {
 	}
 	
 	public boolean isAlert() {
-		if((getWorld().player.getX()-getX() <= 200 || getWorld().player.getX()-getX() >= 200) && getWorld().player.getY() - getY() <= 0 && getY() - getWorld().player.getY() <= 100)
+		float snakeX = getX();
+		float playerX = getWorld().player.getX();
+		float snakeY = getY();
+		float playerY = getWorld().player.getY();
+		
+		if(snakeY - playerY >= -50 && snakeY - playerY <= 50)
 		{
-			return true;
+			if(playerX - snakeX <= 200 && snakeX - playerX <= 200)
+			{
+				return true;
+			}
+			else return false;
 		}
 		else return false;
 	}

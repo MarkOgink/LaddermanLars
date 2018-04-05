@@ -144,6 +144,11 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 				onRope = true;
 				this.setGravity(0);
 			}
+			
+			else if (g instanceof Heart) {
+				increaseLifePoints(((Heart) g).getLifePoints());
+				world.deleteGameObject(g);
+			}
 		}
 		
 	}

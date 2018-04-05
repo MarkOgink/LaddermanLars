@@ -1,24 +1,24 @@
 package nl.han.ica.leathermanlars;
 
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
+
 public class HealingSmallCactus extends SmallCactus {
-	private Player player;
-	private LeathermanLars world;
 	
-	public HealingSmallCactus(LeathermanLars world ,Player player) {
-		this.player = player;
-		this.world = world;
+	public HealingSmallCactus(LeathermanLars world) {
+		super(world);
 	}
 
 	@Override
 	public void doCactusAction() {
-		player.increaseLifePoints(1);
+		world.addGameObject(new Heart(new Sprite("src/main/java/nl/han/ica/leathermanlars/media/smallHeart.png"), 1), getX(), getY());
 		world.deleteGameObject(this);
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
+		if(playerNear()) {
+			doCactusAction();
+		}
 	}
 	
 	

@@ -101,7 +101,7 @@ public class LeathermanLars extends GameEngine{
         DamagingBigCactus dbc0 = new DamagingBigCactus(this, player);
         DamagingSmallCactus dsc = new DamagingSmallCactus(this, player);
         HealingBigCactus hbc = new HealingBigCactus(this, player);
-        HealingSmallCactus hsc = new HealingSmallCactus(this, player);
+        HealingSmallCactus hsc = new HealingSmallCactus(this);
         
 	    addGameObject(player, 300, 675-player.getHeight());
 	    addGameObject(rope, 670, 400);

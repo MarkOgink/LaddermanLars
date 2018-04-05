@@ -2,12 +2,10 @@ package nl.han.ica.leathermanlars;
 
 
 public class ExplodingSmallCactus extends SmallCactus {
-
-	private LeathermanLars world;
 	private NonAggresiveSnake SmallSnake;
 	
 	public ExplodingSmallCactus(LeathermanLars world) {
-		this.world = world;
+		super(world);
 	}
 
 	@Override
@@ -20,9 +18,9 @@ public class ExplodingSmallCactus extends SmallCactus {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
-		
+		if(playerNear()) {
+			doCactusAction();
+		}
 	}
 	
 }
