@@ -3,13 +3,24 @@ package nl.han.ica.leathermanlars;
 import java.util.List;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.leathermanlars.Snake;
-
+/*
+ * @author Timo Kloks & Mark Ogink
+ * Klasse voor agressieve slang
+ */
 public class AggresiveSnake extends Snake {
-
+	/*
+	 * Constructor
+	 * @param world Referentie naar wereld
+	 * @param x xSpawn coordinaat
+	 * @param y ySpawn coordinaat
+	 */
 	public AggresiveSnake(LeathermanLars world, float x, float y) {
 		super(world, x, y);
 	}
-	
+	/*
+	 * Functie die controleert of een speler in de buurt is.
+	 * @return true/false
+	 */
 	public boolean isAlert() {
 		float snakeX = getX();
 		float playerX = getWorld().player.getX();
@@ -27,6 +38,10 @@ public class AggresiveSnake extends Snake {
 		else return false;
 	}
 	
+	/*
+	 * Functie die isAlert controleert. Bij true gaat hij achter de speler aan. Bij false
+	 * gaat hij door met zijn normale patroon
+	 */
 	@Override
 	public void update() {
 		if(isAlert()) {
@@ -49,11 +64,5 @@ public class AggresiveSnake extends Snake {
 				setxSpeed(1);
 			}
 		}
-	}
-
-	@Override
-	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
-		// TODO Auto-generated method stub
-		
 	}
 }

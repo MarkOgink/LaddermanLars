@@ -10,6 +10,10 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.AnimatedSpriteObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import processing.core.PVector;
+/*
+ * @author Timo Kloks & Mark Ogink
+ * De spelerklasse (Lars/Cowboy)
+ */
 
 public class Player extends AnimatedSpriteObject implements ICollidableWithTiles, ICollidableWithGameObjects {
 	final int size=25;
@@ -19,7 +23,11 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 	private int lifePoints;
 	private int numberOfKills = 0;
 	private int currentFrame;
-
+	
+	/*
+	 * Constructor
+	 * @param world Referentie naar de wereld.
+	 */
 	public Player(LeathermanLars world) {
 		super(new Sprite("src/main/java/nl/han/ica/leathermanlars/media/lars.png"), 2);
 		this.world = world;
@@ -29,7 +37,9 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         setFriction(0.1f);
         setGravity(0.5f);
 	}
-
+	/*
+	 *Zorgt ervoor dat de speler binnen de map blijft. 
+	 */
 	@Override
 	public void update() {
 		if (getX()<=0) {
@@ -50,6 +60,11 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         }
 	}
 	
+	/*
+	 * Controleert of er een knop is ingedrukt, en voert een actie uit.
+	 * @param keyCode Referentie naar niet-letter knoppen op toetsenbord
+	 * @param key Referentie naar letter knoppen op toetsenbord
+	 */
 	@Override
     public void keyPressed(int keyCode, char key) {
         final int speed = 5;
@@ -95,7 +110,10 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 	        }
 	    }
     }
-
+	/*
+	 * Zorgt voor player - tile interactie
+	 * @param collidedTiles lijst met tiles
+	 */
 	@Override
 	public void tileCollisionOccurred(List<CollidedTile> collidedTiles) {
 		PVector vector;
@@ -122,7 +140,10 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 		}
 		
 	}
-
+	/*
+	 * Zorgt voor player - object interactie
+	 * @param collidedGameObjects lijst met game objecten.
+	 */
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 		for(GameObject g:collidedGameObjects) {
@@ -152,20 +173,26 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 		}
 		
 	}
-	
+	/*
+	 * Retourneert huidige levenspunten.
+	 * @return lifePoints aantal levens.
+	 */
 	public int getLifePoints() {
 		return lifePoints;
 	}
-	public void setLifePoints(int number) {
-		lifePoints = number;
-		world.refreshDashboardText();
-	}
 	
+	/*
+	 * Verhoogt levenspunten met nummer
+	 * @param number Het te verhogen nummer
+	 */
 	public void increaseLifePoints(int number) {
 		lifePoints = lifePoints + number;
 		world.refreshDashboardText();
 	}
-	
+	/*
+	 * Verlaagt levenspunten met nummer.
+	 * @param number Het te verlagen nummer.
+	 */
 	public void decreaseLifePoints(int number) {
 		if(lifePoints>0 && number == 1) {
 			lifePoints = lifePoints - number;
@@ -177,12 +204,17 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 			world.refreshDashboardText();
 		}
 	}
-	
+	/*
+	 * Verhoogt het aantal kills met een.
+	 */
 	public void increaseKills() {
 		numberOfKills++;
 		world.refreshDashboardTextKills();
 	}
-	
+	/*
+	 * Retourneert het aantal kills.
+	 * @return numberOfKills Het aantal kills.
+	 */
 	public int getNumberOfKills() {
 		return numberOfKills;
 	}
