@@ -35,10 +35,18 @@ public abstract class Snake extends AnimatedSpriteObject implements ICollidableW
 		if(getX()<world.player.getX()) {
 			world.player.setxSpeed(20);
 			world.player.decreaseLifePoints(1);
+			if(world.player.getLifePoints() <= 0) {
+				world.player.setX(300);
+				world.player.setY(675-world.player.getHeight());
+			}
 		}
 		else if(getX()>world.player.getX()) {
 			world.player.setxSpeed(-20);
 			world.player.decreaseLifePoints(1);
+			if(world.player.getLifePoints() <= 0) {
+				world.player.setX(300);
+				world.player.setY(700);
+			}
 		}
 	}
 

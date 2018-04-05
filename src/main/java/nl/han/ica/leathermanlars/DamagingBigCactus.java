@@ -4,17 +4,19 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 
 public class DamagingBigCactus extends BigCactus {
-	private Player player;
 	
 	public DamagingBigCactus(LeathermanLars world, Player player) {
 		super(world);
-		this.player = player;
 	}
 
 	@Override
 	public void doCactusAction() {
-		player.decreaseLifePoints(2);
+		world.player.decreaseLifePoints(2);
 		world.deleteGameObject(this);
+		if(world.player.getLifePoints() <= 0) {
+			world.player.setX(300);
+			world.player.setY(700);
+		}
 	}
 
 	@Override
